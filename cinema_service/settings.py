@@ -23,7 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config(
     "SECRET_KEY",
-    default="django-insecure-6vubhk2$++agnctay_4pxy_8cq)mosmn(*-#2b^v4cgsh-^!i3")
+    default=(
+        "django-insecure-6vubhk2$++agnctay_4pxy_8cq)"
+        "mosmn(*-#2b^v4cgsh-^!i3")
+)
 DEBUG = os.getenv("DEBUG") == "True"
 
 ALLOWED_HOSTS = []
