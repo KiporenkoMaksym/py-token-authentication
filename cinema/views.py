@@ -154,16 +154,18 @@ class OrderViewSet(
     mixins.CreateModelMixin,
     viewsets.GenericViewSet
 ):
-    queryset = Order.objects.prefetch_related(
-        "tickets__movie_session__movie", "tickets__movie_session__cinema_hall"
-    )
+    queryset = Order.objects.all()
     serializer_class = OrderSerializer
     pagination_class = OrderPagination
     http_method_names = ["get", "post"]
-    permission_classes = [IsAdminOrIfAuthenticatedReadOnly, ]
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+        queryset = Order.objects.filter(user=self.request.user).prefetch_related(
+            "tickets__movie_session__movie",
+            "tickets__movie_session__cinema_hall"
+        )
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "list":

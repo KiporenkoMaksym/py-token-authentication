@@ -8,9 +8,8 @@ from user.views import (
 
 urlpatterns = [
     path("register/", CreateUserView.as_view(), name="create"),
-    path("token/", CreateTokenView.as_view(), name="login"),
-    path("me/", ManageUserView.as_view(), name="manage")
-
+    path("login/", CreateTokenView.as_view(), name="token"),
+    path("me/", ManageUserView.as_view(), name="manage"),
 ]
 
 app_name = "user"
