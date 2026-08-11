@@ -20,4 +20,5 @@ class UserSerializer(serializers.ModelSerializer):
             user.set_password(password)
             user.save()
 
+        user.refresh_from_db()
         return user
