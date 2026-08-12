@@ -166,7 +166,8 @@ class OrderViewSet(
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        queryset = Order.objects.filter(user=self.request.user).prefetch_related(
+        queryset = Order.objects.filter(
+            user=self.request.user).prefetch_related(
             "tickets__movie_session__movie",
             "tickets__movie_session__cinema_hall"
         )
