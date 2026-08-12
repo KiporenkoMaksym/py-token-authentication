@@ -37,6 +37,7 @@ class GenreViewSet(
 ):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     http_method_names = ["get", "post"]
 
 
@@ -47,6 +48,7 @@ class ActorViewSet(
 ):
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     http_method_names = ["get", "post"]
 
 
@@ -57,6 +59,7 @@ class CinemaHallViewSet(
 ):
     queryset = CinemaHall.objects.all()
     serializer_class = CinemaHallSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     http_method_names = ["get", "post"]
 
 
@@ -68,6 +71,7 @@ class MovieViewSet(
 ):
     queryset = Movie.objects.prefetch_related("genres", "actors")
     serializer_class = MovieSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     http_method_names = ["get", "post"]
 
     @staticmethod
@@ -117,6 +121,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
         )
     )
     serializer_class = MovieSessionSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
     http_method_names = ["get", "post", "put", "patch", "delete"]
 
     def get_queryset(self):
